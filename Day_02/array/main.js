@@ -203,3 +203,5 @@ function numbermin(n){
 console.log(numbermin(53751)); 
 console.log(numbermin(14350)); 
 console.log(numbermin(203950));
+
+
