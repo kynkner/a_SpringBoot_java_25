@@ -5,31 +5,6 @@ console.log(content);
 
 const words = content.split(' ');
 console.log(words);
-
-// Cach 1 dung forEach
-
-// const newwords = [];
-// words.forEach(word => {
-//     if(word.length >= 5){ // Khach => <span style"background-color: yellow">Khach</span>
-//         newwords.push(`<span style = "background-color: yellow">${word}</span>`)
-//     }else{
-//             newwords.push(word);
-//     }
-// });
-
-
-// Cach 2 dung map
-
-// const newwords = words.map((word) => {
-//     if(word.length >= 5){ // Khach => <span style"background-color: yellow">Khach</span>
-//         return `<span style = "background-color: yellow">${word}</span>`
-//     }else{
-//         return word;
-//     }
-// })
-
-// Cach 3 dung toan tu 3 ngoi
-
 const newwords = words.map((word) => {
     return word.length >= 5 ? `<span style = "background-color: yellow">${word}</span>` : word;
 })
