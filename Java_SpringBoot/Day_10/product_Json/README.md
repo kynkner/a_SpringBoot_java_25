@@ -3,6 +3,9 @@
 ### data
 ![img](./img/data.png)
 ### Câu 1:
+- Lấy thông tin chi tiết của một sản phẩm 
+- API: GET /products/{id}
+- Mô tả: Trả về chi tiết của sản phẩm dựa trên id được cung cấp.
 ![img](./img/1.png)
 ![img](./img/1-1.png)
 ### Câu 2:
