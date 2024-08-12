@@ -7,7 +7,7 @@
 
 ### Dependency:
 - Thư viện Jackson có sẵn trong SpringBoot:
-```
+```ruby
 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
