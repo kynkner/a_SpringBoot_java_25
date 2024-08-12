@@ -6,6 +6,15 @@
 - [InitDB](./src/main/java/com/example/demoapp/database/InitDB.java)
 
 ### Dependency:
+- Thư viện Jackson có sẵn trong SpringBoot:
+```
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.15.0</version>
+</dependency>
+
+```
 - Thư viện gson (file Json):
 ```ruby
 <dependency>
