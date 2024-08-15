@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>HomePage</h1>
+    <p th:text="${book.title}"></p>
+    <p th:text="${book.author}"></p>
+    <p th:text="${book.year}"></p>
+    <p th:text="${book.id}"></p>
+
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
