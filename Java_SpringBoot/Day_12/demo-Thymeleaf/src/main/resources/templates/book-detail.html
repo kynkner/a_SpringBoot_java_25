@@ -2,22 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title th:text = "${book == null ? 'Not Found' : book.title}">Book Detail</title>
 </head>
 <body>
-    <h1>HomePage</h1>
-    <p th:text="${book.title}"></p>
-    <p th:text="${book.author}"></p>
-    <p th:text="${book.year}"></p>
-    <p th:text="${book.id}"></p>
+    <h2 th:if="${book == null}">Book not found</h2>
 
-    <h3>Danh sach Book</h3>
-    <form>
-        <input type="text" name="title" placeholder="Tim kiem theo ten">
-        <button type="submit">tim kiem</button>
-    </form>
-    <hr>
+    <th:block th:if="book != null">
+        <h2>Thong tin sach</h2>
+        <p>Title: <span th:text="${book.title}"></span></p>
+        <p>Author: <span th:text="${book.author}"></span></p>
+        <p>Year: <span th:text="${book.year}"></span></p>
+        <p>Id: <span th:text="${book.id}"></span></p>
+    </th:block>
+
+    <h3>Sách có liên quan: </h3>
+    <br>
     <table border="1">
         <thead>
         <tr >
@@ -25,26 +24,22 @@
             <th>Title</th>
             <th>Author</th>
             <th>Year</th>
-            <th>Chi tiet</th>
+            <th>Ngay tao</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="book : ${books}" th:styleappend="${book.id % 2 == 1 ? 'background-color : gray' : ''}">
+        <tr th:each="book : ${books}">
             <td th:text="${book.id}">1</td>
             <td th:text="${book.title}">Chaoaksbd</td>
             <td th:text="${book.author}">Emakjsdhb</td>
             <td th:text="${book.year}">2556</td>
+            <td th:text="${book.day}">12</td>
 <!--            <td><a th:href="@{/books/{id} (id = ${book.id})}">Xem chi tiet</a></td>-->
 <!--            <td><a th:href="'/books/' + ${book.id}">xem chi tiet</a></td>-->
-            <td><a th:href="|/books/${book.id}|">xem chi tiet</a></td>
+<!--            <td><a th:href="|/books/${book.id}|">xem chi tiet</a></td>-->
         </tr>
         </tbody>
     </table>
-
-
-
-
-    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>

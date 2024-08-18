@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Shop;</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+
+<h3>Danh sach Book</h3>
+
+<table border="1">
+    <thead>
+    <tr >
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Chi tiet</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="book : ${pageResponse.getContent()}" th:styleappend="${book.id % 2 == 1 ? 'background-color : gray' : ''}">
+        <td th:text="${book.id}">1</td>
+        <td th:text="${book.title}">Chaoaksbd</td>
+        <td th:text="${book.author}">Emakjsdhb</td>
+        <td th:text="${book.year}">2556</td>
+        <!--            <td><a th:href="@{/books/{id} (id = ${book.id})}">Xem chi tiet</a></td>-->
+        <!--            <td><a th:href="'/books/' + ${book.id}">xem chi tiet</a></td>-->
+        <td><a th:href="|/books/${book.id}|">xem chi tiet</a></td>
+    </tr>
+    </tbody>
+</table>
+<button th:if="${pageResponse.getCurrenPage() != 1}">
+    <a th:href="|/books?page=${pageResponse.getCurrenPage() - 1}|">trang truoc</a>
+</button>
+
+
+<button th:style="${pageResponse.getCurrenPage() == number ? 'background-color: red' : ''}"
+        th:each="number : ${#numbers.sequence(1, pageResponse.totalPages())}">
+    <a th:href="|/books?page=${number}|" th:text="${number}">1</a>
+</button>
+
+<button th:if="${pageResponse.getCurrenPage() != pageResponse.totalPages()}">
+    <a th:href="|/books?page=${pageResponse.getCurrenPage() + 1}|">trang sau</a>
+</button>
+
+
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
