@@ -14,7 +14,6 @@ public class PageResponseImpl<T> implements PageResponse<T>{
     int pageSize;
     List<T> data;
 
-
     @Override
     public int getCurrenPage() {
         return currentPage;
@@ -32,13 +31,13 @@ public class PageResponseImpl<T> implements PageResponse<T>{
 
     @Override
     public int totalPages() {
-        return (int) Math.ceil((double) data.size() /pageSize);
+        return (int) Math.ceil((double) data.size() / pageSize);
     }
 
     @Override
     public List<T> getContent() {
         int fromIndex = (currentPage - 1) * pageSize;
-        if (fromIndex >= data.size()) {
+        if(fromIndex >= data.size()){
             return List.of();
         }
         int toIndex = Math.min(fromIndex + pageSize, data.size());

@@ -11,6 +11,11 @@
 <body>
 <div class="container-xl">
     <h1 class="m-auto ">Danh sách đồng hồ</h1>
+    <form>
+        <input type="text" name="name" placeholder="Tìm kiếm theo tên">
+        <button type="submit">Tìm kiếm</button>
+    </form>
+
     <div class="container  mt-1">
         <div class="row align-items-center">
 
@@ -28,16 +33,17 @@
                     </div>
                 </div>
         </div>
-<!--        <button th:if="${pageResponse.getCurrenPage() != 1}">-->
-<!--            <a th:href="|/index?page=${pageResponse.getCurrenPage() - 1}|">Trang trước</a>-->
-<!--        </button>-->
-<!--        <button th:style="${pageResponse.getCurrenPage() == number ? 'background-color: red' : ''}"-->
-<!--                th:each="number : ${#numbers.sequence(1, pageResponse.totalPages())}">-->
-<!--            <a th:href="|/index?page=${number}|">1</a>-->
-<!--        </button>-->
-<!--        <button th:if="${pageResponse.getCurrenPage() != pageResponse.totalPages()}">-->
-<!--            <a th:href="|/index?page=${pageResponse.getCurrenPage() + 1}|">Trang sau</a>-->
-<!--        </button>-->
+
+        <button  th:if="${pageResponse.getCurrenPage() != 1}">
+            <a th:href="|/index?page=${pageResponse.getCurrenPage() - 1}&size=${pageResponse.getPageSize()}|">Trang trước</a>
+        </button>
+        <button th:style="${pageResponse.getCurrenPage() == number ? 'background-color: red' : ''}"
+                th:each="number : ${#numbers.sequence(1, pageResponse.totalPages())}">
+            <a th:href="|/index?page=${number}|" th:text="${number}">1</a>
+        </button>
+        <button th:if="${pageResponse.getCurrenPage() != pageResponse.totalPages()}">
+            <a th:href="|/index?page=${pageResponse.getCurrenPage() + 1}&size=${pageResponse.getPageSize()}|">Trang sau</a>
+        </button>
     </div>
     </div>
 

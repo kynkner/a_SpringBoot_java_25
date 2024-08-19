@@ -1,6 +1,5 @@
 package com.example.miniproject_test.controller;
 
-import com.example.miniproject_test.database.ProductDB;
 import com.example.miniproject_test.model.PageResponse;
 import com.example.miniproject_test.model.PageResponseImpl;
 import org.springframework.ui.Model;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -23,17 +20,31 @@ public class ProductController {
 
     @GetMapping("/index")
     public String getAllProducts(Model model,
+                                 @RequestParam(required = false) String name,
                                  @RequestParam(required = false, defaultValue = "1")int page,
                                  @RequestParam(required = false,defaultValue = "8") int size) {
-        List<Product> products = productService.getAllProducts();
-//        PageResponse<Product> pageResponse = PageResponseImpl.<Product>builder()
-//                .currentPage(page)
-//                .pageSize(size)
-//                .data(products)
-//                .build();
+//        List<Product> products = productService.getAllProducts();
 
-        model.addAttribute("products", products);
-//        model.addAttribute("pageResponse", pageResponse);
+//        List<Product> getbyname = new ArrayList<>();
+
+//        model.addAttribute("products", products);
+//        model.addAttribute("getbyname", getbyname);
+
+
+        List<Product> products;
+        if (name != null && !name.isEmpty()) {
+            products = productService.getProductsByName(name);
+        } else {
+            products = productService.getAllProducts();
+        }
+
+        PageResponse<Product> pageResponse = PageResponseImpl.<Product>builder()
+                .currentPage(page)
+                .pageSize(size)
+                .data(products)
+                .build();
+        model.addAttribute("pageResponse", pageResponse);
+        model.addAttribute("products", pageResponse.getContent());
         return "index";
     }
 
