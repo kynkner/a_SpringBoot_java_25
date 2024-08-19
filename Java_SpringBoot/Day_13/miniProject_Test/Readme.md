@@ -17,6 +17,6 @@
 
 ![timkiem](./img/4.png)
 
-- Sau khi tìm kiếm: 
+- Sau khi tìm kiếm(Hiển thị tất cả sản phẩm có name chứa kí tự 'Z'): 
 
 ![anh](./img/5.png)
