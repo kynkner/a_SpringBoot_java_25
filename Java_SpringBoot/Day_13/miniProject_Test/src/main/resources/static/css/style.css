@@ -1,0 +1,18 @@
+h1{
+    text-align: center;
+}
+img{
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+}
+.price{
+    color: red;
+    font-weight: bold;
+    text-decoration: line-through;
+    font-size: 18px;
+}
+.newprice{
+    font-size: 20px;
+
+}

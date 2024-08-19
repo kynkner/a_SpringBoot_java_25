@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container-xl">
+    <h1 class="m-auto ">Danh sách đồng hồ</h1>
+    <div class="container  mt-1">
+        <div class="row align-items-center">
+
+            <div class="col - 4 mt-4" th:each="product : ${products}">
+                <div class="card" style="width: 18rem;">
+                        <img th:src="@{/img/{filename}(filename =${product.thumbnail})}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${product.name}">Card title</h5>
+<!--                            <p class="card-text" th:text="${product.description}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                            <p class="price" ><span th:text="${product.price}"></span> $</p>
+                            <p class="newprice" > <span th:text="${product.priceDiscount}"></span> $</p>
+                            <p class="rating" th:text="${product.rating}">danh gia</p>
+                            <a th:href="|/index/products/${product.id}|" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+<!--        <button th:if="${pageResponse.getCurrenPage() != 1}">-->
+<!--            <a th:href="|/index?page=${pageResponse.getCurrenPage() - 1}|">Trang trước</a>-->
+<!--        </button>-->
+<!--        <button th:style="${pageResponse.getCurrenPage() == number ? 'background-color: red' : ''}"-->
+<!--                th:each="number : ${#numbers.sequence(1, pageResponse.totalPages())}">-->
+<!--            <a th:href="|/index?page=${number}|">1</a>-->
+<!--        </button>-->
+<!--        <button th:if="${pageResponse.getCurrenPage() != pageResponse.totalPages()}">-->
+<!--            <a th:href="|/index?page=${pageResponse.getCurrenPage() + 1}|">Trang sau</a>-->
+<!--        </button>-->
+    </div>
+    </div>
+
+</div>
+
+</body>
+</html>
