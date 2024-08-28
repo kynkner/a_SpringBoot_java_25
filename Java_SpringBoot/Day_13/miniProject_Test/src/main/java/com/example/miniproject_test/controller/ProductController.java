@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class ProductController {
@@ -29,6 +30,7 @@ public class ProductController {
 
 //        model.addAttribute("products", products);
 //        model.addAttribute("getbyname", getbyname);
+
 
 
         List<Product> products;
