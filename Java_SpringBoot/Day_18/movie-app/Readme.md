@@ -13,7 +13,7 @@ Danh sách bài viết (lấy theo status = true, thời gian tạo giảm dần
 - Bài viết cần fake data để hiển thị
 
 Hình ảnh minh họa: 
-![anh](/img/2.png)
+![anh](./img/2.png)
 ### Làm giao diện:
 Học viên làm giao diện cho 2 trang sau:
 - Danh sách blog: [Blog-list](https://kynkner.github.io/Demo-blog-list/)
