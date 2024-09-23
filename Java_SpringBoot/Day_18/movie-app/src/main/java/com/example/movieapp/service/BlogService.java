@@ -3,6 +3,7 @@ package com.example.movieapp.service;
 import com.example.movieapp.entity.Blogs;
 import com.example.movieapp.repository.BlogRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,8 +16,13 @@ import java.util.List;
 public class BlogService {
     private final BlogRepository blogRepository;
 
-    public List<Blogs> getBlogsNew (int limit){
-        Pageable pageable = PageRequest.of(0, limit, Sort.by("createdAt").descending());
-        return blogRepository.findByStatus(true, pageable).getContent();
+    public Page<Blogs> getBlogs(Boolean status, int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("createdAt").descending());
+        return blogRepository.findByStatus(status, pageable);
+    }
+
+    public Blogs getBlogDetails(Integer id, String slug) {
+        return blogRepository.findByIdAndSlugAndStatus(id, slug, true)
+                .orElse(null);
     }
 }

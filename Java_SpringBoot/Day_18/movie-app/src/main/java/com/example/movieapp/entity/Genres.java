@@ -20,11 +20,14 @@ public class Genres {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     String name;
 
     @Column(unique = true, nullable = false)
     String slug;
+
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
+
+
 }

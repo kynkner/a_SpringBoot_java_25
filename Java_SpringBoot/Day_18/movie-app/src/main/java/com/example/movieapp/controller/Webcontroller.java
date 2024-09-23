@@ -2,16 +2,19 @@ package com.example.movieapp.controller;
 
 import com.example.movieapp.entity.Blogs;
 import com.example.movieapp.entity.Movie;
+import com.example.movieapp.entity.Reviews;
 import com.example.movieapp.model.enums.MovieType;
 import com.example.movieapp.repository.BlogRepository;
 import com.example.movieapp.repository.MovieRepository;
 import com.example.movieapp.service.BlogService;
 import com.example.movieapp.service.MovieService;
+import com.example.movieapp.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -21,6 +24,7 @@ import java.util.List;
 public class Webcontroller {
     private final MovieService movieService;
     private final BlogService blogService;
+    private final ReviewService reviewService;
 
     @GetMapping()
     public String getHomePage(Model model){
@@ -28,7 +32,7 @@ public class Webcontroller {
         List<Movie> listPhimLe = movieService.getMoviesByType(MovieType.PHIM_LE, true, 1, 6).getContent();
         List<Movie> listPhimChieuRap = movieService.getMoviesByType(MovieType.PHIM_CHIEU_RAP, true, 1, 6).getContent();
         List<Movie> listPhimHot = movieService.getMoviesHot(4);
-        List<Blogs> listBlog = blogService.getBlogsNew(4);
+        List<Blogs> listBlog = blogService.getBlogs(true, 1, 4).getContent();
 
         model.addAttribute("listPhimBo", listPhimBo);
         model.addAttribute("listPhimLe", listPhimLe);
@@ -67,5 +71,34 @@ public class Webcontroller {
         model.addAttribute("pageData", pageData);
         model.addAttribute("currentPage", page);
         return "web/phim-chieu-rap";
+    }
+    @GetMapping("/phim/{id}/{slug}")
+    public String getMovieDetailsPage(Model model,
+                                      @PathVariable Integer id,
+                                      @PathVariable String slug) {
+        Movie movie = movieService.getMovieDetails(id, slug);
+        List<Reviews> reviews = reviewService.getReviewsByMovieId(id);
+        model.addAttribute("movie", movie);
+        model.addAttribute("reviews", reviews);
+        return "web/chi-tiet-phim";
+    }
+
+    @GetMapping("/tin-tuc")
+    public String getBlogPage(Model model,
+                              @RequestParam(required = false, defaultValue = "1") int page,
+                              @RequestParam(required = false, defaultValue = "10") int pageSize) {
+        Page<Blogs> pageData = blogService.getBlogs(true, page, pageSize);
+        model.addAttribute("pageData", pageData);
+        model.addAttribute("currentPage", page);
+        return "web/tin-tuc";
+    }
+
+    @GetMapping("/tin-tuc/{id}/{slug}")
+    public String getBlogDetailsPage(Model model,
+                                     @PathVariable Integer id,
+                                     @PathVariable String slug) {
+        Blogs blog = blogService.getBlogDetails(id, slug);
+        model.addAttribute("blog", blog);
+        return "web/chi-tiet-tin-tuc";
     }
 }

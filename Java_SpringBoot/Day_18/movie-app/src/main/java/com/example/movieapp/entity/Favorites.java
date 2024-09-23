@@ -21,4 +21,12 @@ public class Favorites {
     Integer id;
 
     LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    Movie movie;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    Users user;
 }

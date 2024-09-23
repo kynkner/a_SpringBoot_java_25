@@ -20,7 +20,6 @@ public class Episodes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(unique = true, nullable = false)
     String name;
 
     Integer duration;
@@ -30,4 +29,8 @@ public class Episodes {
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
     LocalDateTime publishedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    Movie movie;
 }

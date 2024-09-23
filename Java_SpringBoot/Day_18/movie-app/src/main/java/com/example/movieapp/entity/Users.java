@@ -21,13 +21,15 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(unique = true)
+
     String name;
 
+    @Column(unique = true, nullable = false)
     String email;
+
     String avatar;
 
-    @Column(unique = true)
+
     String password;
 
     @Enumerated(EnumType.STRING)

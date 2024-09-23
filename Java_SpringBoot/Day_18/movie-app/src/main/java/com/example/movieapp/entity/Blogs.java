@@ -20,10 +20,8 @@ public class Blogs {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(unique = true)
     String title;
 
-    @Column(unique = true, nullable = false)
     String slug;
 
     @Column(columnDefinition = "text")
@@ -37,4 +35,8 @@ public class Blogs {
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
     LocalDateTime publishedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    Users user;
 }

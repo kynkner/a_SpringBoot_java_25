@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
@@ -36,6 +37,6 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     //ung dung movie
     Page<Movie> findByTypeAndStatus(MovieType type, Boolean status, Pageable pageable);
 
-
+    Optional<Movie> findByIdAndSlugAndStatus(Integer id, String slug, Boolean status);
 
 }

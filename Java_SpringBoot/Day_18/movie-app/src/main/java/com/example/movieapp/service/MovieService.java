@@ -23,8 +23,13 @@ public class MovieService {
     }
 
     public List<Movie> getMoviesHot (int limit){
-        Pageable pageable = PageRequest.of(0, limit, Sort.by("createdAt").descending());
+        Pageable pageable = PageRequest.of(0, limit, Sort.by("rating").descending());
         return movieRepository.findByStatus(true, pageable).getContent();
+    }
+
+    public Movie getMovieDetails(Integer id, String slug) {
+        return movieRepository.findByIdAndSlugAndStatus(id, slug, true)
+                .orElse(null);
     }
 
 }
