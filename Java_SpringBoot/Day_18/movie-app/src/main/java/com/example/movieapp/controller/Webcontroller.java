@@ -4,8 +4,6 @@ import com.example.movieapp.entity.Blogs;
 import com.example.movieapp.entity.Movie;
 import com.example.movieapp.entity.Reviews;
 import com.example.movieapp.model.enums.MovieType;
-import com.example.movieapp.repository.BlogRepository;
-import com.example.movieapp.repository.MovieRepository;
 import com.example.movieapp.service.BlogService;
 import com.example.movieapp.service.MovieService;
 import com.example.movieapp.service.ReviewService;

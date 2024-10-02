@@ -75,7 +75,7 @@ const renderReviews = reviews => {
         `;
     });
     reviewListEl.innerHTML = html;
-    // attachReviewButtons();
+    attachReviewButtons();
 
 }
 
@@ -123,6 +123,10 @@ const createReview = async () => {
         console.log(res.data)
         reviews.unshift(res.data);
         renderReviews(reviews);
+        resetForm();
+        // Ẩn modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalReview'));
+        modal.hide();
     } catch (error) {
         console.log(error);
     }
